@@ -8,7 +8,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
-    "source.fixAll.stylelint": "always",
     "source.addMissingImports": "always"
   },
   "editor.formatOnSave": true,
