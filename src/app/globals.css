@@ -36,3 +36,5 @@
     @apply flex flex-col items-center;
   }
 }
+
+@import './typography.css';
