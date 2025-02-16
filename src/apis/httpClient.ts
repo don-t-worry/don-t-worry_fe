@@ -41,15 +41,6 @@ export class HttpClient {
     return this.client.delete<T, T>(...args)
   }
 
-  // 토큰 재발급
-  reissueToken = () => {
-    issueToken().then(async (res) => {
-      if (res?.status === 200 && res.headers['authorization']) {
-        this.onRequest(res.config)
-      }
-    })
-  }
-
   private onRequest(config: InternalAxiosRequestConfig) {
     const accessToken = localStorage.getItem(ACCESS_TOKEN)
 
@@ -72,8 +63,13 @@ export class HttpClient {
     }
 
     // 토큰 재발급
-    if (error.config && response?.status === 401) {
-      return this.reissueToken()
+    if (error.config && response?.status === 400) {
+      return issueToken().then(async (res) => {
+        console.log
+        if (res?.status === 200 && res.headers['authorization']) {
+          this.onRequest(res.config)
+        }
+      })
     }
 
     return Promise.reject(error)
