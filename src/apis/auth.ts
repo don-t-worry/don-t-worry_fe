@@ -31,5 +31,5 @@ export const checkExistUser = async (request: CheckExistUserRequest) => {
 }
 
 export const issueToken = async () => {
-  return await api.post('/refresh')
+  return await api.get('/refresh')
 }
